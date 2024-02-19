@@ -26,13 +26,13 @@ class AdminController extends Controller
 {
   public function login()
   {
-    return view('backend.login');
+    return view('backend.sign-in');
   }
 
   public function authentication(Request $request)
   {
     $rules = [
-      'username' => 'required',
+      'email' => 'required',
       'password' => 'required'
     ];
 
@@ -44,12 +44,12 @@ class AdminController extends Controller
 
     if (
       Auth::guard('admin')->attempt([
-        'username' => $request->username,
+        'email' => $request->email,
         'password' => $request->password
       ])
     ) {
       $authAdmin = Auth::guard('admin')->user();
-
+      return redirect()->route('admin.dashboard');
       // check whether the admin's account is active or not
       if ($authAdmin->status == 0) {
         Session::flash('alert', 'Sorry, your account has been deactivated!');
@@ -62,7 +62,7 @@ class AdminController extends Controller
         return redirect()->route('admin.dashboard');
       }
     } else {
-      return redirect()->back()->with('alert', 'Oops, username or password does not match!');
+      return redirect()->back()->with('alert', 'Oops, Email or password does not match!');
     }
   }
 

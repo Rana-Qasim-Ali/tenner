@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BackEnd\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,10 +40,10 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('/admin')->middleware('guest:admin')->group(function () {
     // admin redirect to login page route
-    Route::get('/', 'BackEnd\AdminController@login')->name('admin.login');
+    Route::get('/', [AdminController::class,'login'])->name('admin.login');
   
     // admin login attempt route
-    Route::post('/auth', 'BackEnd\AdminController@authentication')->name('admin.auth');
+    Route::post('/auth', [AdminController::class,'authentication'])->name('admin.auth');
   
     // admin forget password route
     Route::get('/forget-password', 'BackEnd\AdminController@forgetPassword')->name('admin.forget_password');

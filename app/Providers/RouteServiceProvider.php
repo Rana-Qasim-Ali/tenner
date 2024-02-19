@@ -39,6 +39,9 @@ class RouteServiceProvider extends ServiceProvider
                     // admin routes are goes 
               Route::middleware('web')
                ->group(base_path('routes/admin.php'));
+              
+               Route::middleware('web')
+               ->group(base_path('routes/vendor.php'));
                 //End Here 
                 
         });

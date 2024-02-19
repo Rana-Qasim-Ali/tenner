@@ -23,6 +23,9 @@ class Authenticate extends Middleware
 
         // Define guard based on the route name
         switch ($route) {
+            case 'vendor.*':
+                $guard = 'vendor';
+                break;
             case 'admin.*':
                 $guard = 'admin';
                 break;
@@ -35,7 +38,10 @@ class Authenticate extends Middleware
         // Redirect based on the guard
         if ($guard === 'admin') {
             return route('admin.login'); // Redirect to the admin login route
-        } else {
+        }elseif($guard === 'vendor'){
+            return route('vendor.login'); // Redirect to the admin login route
+        } 
+        else {
             return route('login'); // Redirect to the default login route
         }
         // return $request->expectsJson() ? null : route('login');

@@ -23,8 +23,12 @@ class RedirectIfAuthenticated
             // if (Auth::guard($guard)->check()) {
             //     return redirect(RouteServiceProvider::HOME);
             // }
-            if ($guard == 'admin' && Auth::guard($guard)->check()) {
+              if ($guard == 'admin' && Auth::guard($guard)->check()) {
                 return redirect()->route('admin.dashboard');
+              }
+
+              if ($guard == 'vendor' && Auth::guard($guard)->check()) {
+                return redirect()->route('vendor.dashboard');
               }
         
               if ($guard == 'web' && Auth::guard($guard)->check()) {
