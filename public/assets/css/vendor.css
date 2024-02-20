@@ -1,0 +1,19 @@
+.form-group .upload-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-group .upload-btn .img-input,
+.form-group .upload-btn .img-input2,
+.form-group .upload-btn .img-input3,
+.thumb-img-input,
+.cover-img-input,
+.background-img-input {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  margin: 0;
+  border: solid transparent;
+  width: 112px;
+  opacity: 0;
+}

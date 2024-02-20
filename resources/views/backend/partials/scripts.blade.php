@@ -10,12 +10,20 @@
 <script type="text/javascript" src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 
 {{-- dropzone js --}}
+<script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/material-dashboard.min.js?v=3.0.0') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/admin-main.js') }}"></script>
 
+
+{{-- datatables js --}}
+<script type="text/javascript" src="{{ asset('assets/js/datatables-1.10.23.min.js') }}"></script>
+
+{{-- datatables bootstrap js --}}
+<script type="text/javascript" src="{{ asset('assets/js/datatables.bootstrap4.min.js') }}"></script>
 
 {{-- 
 @if (session()->has('success'))

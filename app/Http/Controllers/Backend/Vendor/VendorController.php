@@ -48,6 +48,9 @@ class VendorController extends Controller
   {
     $rules = [
       'name' => 'required',
+      'logo' => 'required',
+      'address' => 'required',
+      'phone' => 'required',
       'email' => 'required|email|unique:vendors',
       'password' => 'required|confirmed|min:6',
     ];
@@ -74,6 +77,18 @@ class VendorController extends Controller
 
 
     $in = $request->all();
+
+    $file = $request->file('logo');
+    if ($file) {
+      $extension = $file->getClientOriginalExtension();
+      $directory = public_path('assets/admin/img/organizer-photo/');
+      $fileName = uniqid() . '.' . $extension;
+      @mkdir($directory, 0775, true);
+      $file->move($directory, $fileName);
+
+      // @unlink(public_path('assets/admin/img/organizer-photo/') . $organizer->photo);
+      $in['logo'] = $fileName;
+    }
 
     // $setting = DB::table('basic_settings')->where('uniqid', 12345)->select('organizer_email_verification', 'organizer_admin_approval')->first();
 

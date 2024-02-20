@@ -10,7 +10,7 @@
   {{-- additional style --}}
   @yield('style')
   <title>
-    Material Dashboard 2 by Creative Tim
+    Vendor SignUp
   </title>
 </head>
 
@@ -83,15 +83,30 @@
               <div class="card card-plain">
                 <div class="card-header">
                   <h4 class="font-weight-bolder">Sign Up</h4>
-                  <p class="mb-0">Enter your email and password to register</p>
+                  {{-- <p class="mb-0">Enter your email and password to register</p> --}}
                 </div>
                 <div class="card-body">
                   {{-- <form role="form"> --}}
-                  <form method="post" name="login_form" class="login-form" action="{{ route('vendor.create') }}"> 
+                  <form method="post" name="login_form" class="login-form" action="{{ route('vendor.create') }}" enctype="multipart/form-data"> 
                     @csrf
+                    <div class="form-group">
+                      
+                      <div class="thumb-preview">
+                          <img src="{{ asset('assets/img/noimage.jpg') }}" alt="..." class="uploaded-img">
+                      </div>
+                      <div class="mt-3">
+                        <div role="button" class="btn btn-primary btn-sm upload-btn">
+                          {{ __('Choose Logo') }}
+                          <input type="file" class="img-input" name="logo">
+                        </div>
+                        @if ($errors->has('logo'))
+                          <p class="mt-2 mb-0 text-danger">{{ $errors->first('logo') }}</p>
+                        @endif
+                      </div>
+                    </div>
+                    <label class="form-label">Business Name</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Name</label>
-                      <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}"
+                      <input type="text" name="name" id="name" placeholder="Enter Business Name" class="form-control" value="{{ old('name') }}"
                       >              
                     </div>
                     <div>
@@ -99,9 +114,9 @@
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
                     </div>
+                    <label class="form-label">Email</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="email" name="email" value="{{ old('email') }}" id="email"
+                      <input type="email" name="email" placeholder="Enter Business Name" value="{{ old('email') }}" id="email"
                       class="form-control">
                       {{-- <input type="email" class="form-control"> --}}
                     </div>
@@ -110,9 +125,33 @@
                           <p class="text-danger">{{ $message }}</p>
                       @enderror
                     </div>
+                    <label class="form-label">Address</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Password</label>
-                      <input type="password" name="password" id="password" class="form-control"
+                      <input type="text" name="address" placeholder="Enter Business Name" value="{{ old('address') }}" id="address"
+                      class="form-control">
+                      {{-- <input type="email" class="form-control"> --}}
+                    </div>
+                    <div>
+                      @error('address')
+                          <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                    </div>
+
+                    <label class="form-label">Phone</label>
+                    <div class="input-group input-group-outline mb-3">
+                      <input type="phone" name="phone" placeholder="Enter Phone" value="{{ old('phone') }}" id="phone"
+                      class="form-control">
+                      {{-- <input type="email" class="form-control"> --}}
+                    </div>
+                    <div>
+                      @error('phone')
+                          <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                    </div>
+
+                    <label class="form-label">Password</label>
+                    <div class="input-group input-group-outline mb-3">
+                      <input type="password" name="password" placeholder="Enter Password" id="password" class="form-control"
                      >
                     </div>
                     <div>
@@ -120,9 +159,9 @@
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
                     </div>
+                    <label class="form-label">Confirm Password</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Confirm Password</label>
-                      <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"
+                      <input type="password" name="password_confirmation" placeholder="Enter Confirm Password" id="password_confirmation" class="form-control"
                      >
                     </div>
                     <div>

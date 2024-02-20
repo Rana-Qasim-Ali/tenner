@@ -141,10 +141,10 @@
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
                   </div>
-                  {{-- <p class="mt-4 text-sm text-center">
+                  <p class="mt-4 text-sm text-center">
                     Don't have an account?
-                    <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">Sign up</a>
-                  </p> --}}
+                    <a href="{{ route('admin.signup') }}" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                  </p>
                 </form>
               </div>
             </div>

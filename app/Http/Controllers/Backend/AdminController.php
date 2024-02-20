@@ -29,6 +29,33 @@ class AdminController extends Controller
     return view('backend.sign-in');
   }
 
+  public function signup()
+  {
+    return view('backend.sign-up');
+  }
+
+
+  public function create(Request $request)
+  {
+    $rules = [
+      'email' => 'required|email|unique:vendors',
+      'password' => 'required|confirmed|min:6',
+    ];
+    $messages = [];
+    $validator = Validator::make($request->all(), $rules, $messages);
+
+    if ($validator->fails()) {
+      return redirect()->back()->withErrors($validator->errors());
+    }
+
+    $in = $request->all();
+    $in['password'] = Hash::make($request->password);
+    $organizer = Admin::create($in);
+    return redirect()->route('admin.login');
+  }
+
+
+
   public function authentication(Request $request)
   {
     $rules = [

@@ -41,7 +41,8 @@ Route::middleware('auth')->group(function () {
 Route::prefix('/admin')->middleware('guest:admin')->group(function () {
     // admin redirect to login page route
     Route::get('/', [AdminController::class,'login'])->name('admin.login');
-  
+    Route::get('/sign-up', [AdminController::class,'signup'])->name('admin.signup');
+    Route::post('/create', [AdminController::class,'create'])->name('admin.create');
     // admin login attempt route
     Route::post('/auth', [AdminController::class,'authentication'])->name('admin.auth');
   

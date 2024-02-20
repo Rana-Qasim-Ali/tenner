@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-12">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
+        {{-- <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
           <div class="container-fluid ps-2 pe-0">
             <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
               Material Dashboard 2
@@ -73,7 +73,7 @@
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> --}}
         <!-- End Navbar -->
       </div>
     </div>
@@ -91,37 +91,59 @@
               <div class="card card-plain">
                 <div class="card-header">
                   <h4 class="font-weight-bolder">Sign Up</h4>
-                  <p class="mb-0">Enter your email and password to register</p>
+                  {{-- <p class="mb-0">Enter your email and password to register</p> --}}
                 </div>
                 <div class="card-body">
-                  <form role="form">
-                    <div class="input-group input-group-outline mb-3">
+                  {{-- <form role="form"> --}}
+                    <form method="post" name="login_form" class="login-form" action="{{ route('admin.create') }}" enctype="multipart/form-data"> 
+                      @csrf
+                    {{-- <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Name</label>
                       <input type="text" class="form-control">
-                    </div>
+                    </div> --}}
+                    <label class="form-label">Email</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="email" class="form-control">
+                      <input type="email" name="email" placeholder="Enter Email" class="form-control">
                     </div>
+                    <div>
+                      @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                    </div>
+                    <label class="form-label">Password</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Password</label>
-                      <input type="password" class="form-control">
+                      <input type="password" name="password" placeholder="Enter Password" class="form-control">
                     </div>
-                    <div class="form-check form-check-info text-start ps-0">
+                    <div>
+                      @error('password')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                    </div>
+                    <label class="form-label">Confirm Password</label> 
+                    <div class="input-group input-group-outline mb-3">
+                      <input type="password" name="password_confirmation" placeholder="Enter Confirm Password"  id="password_confirmation" class="form-control"
+                     >
+                    </div>
+                    <div>
+                      @error('confirmed')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                    </div>
+                    {{-- <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                       <label class="form-check-label" for="flexCheckDefault">
                         I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
                       </label>
-                    </div>
+                    </div> --}}
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
                     </div>
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-2 text-sm mx-auto">
                     Already have an account?
-                    <a href="../pages/sign-in.html" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                    <a href="{{ route('admin.login') }}" class="text-primary text-gradient font-weight-bold">Sign in</a>
                   </p>
                 </div>
               </div>
